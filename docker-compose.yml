@@ -1,0 +1,106 @@
+services:
+  locations-db:
+    image: postgres
+    container_name: locations-db
+    restart: always
+    networks:
+      - cinema-network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=locations
+    ports:
+      - '5432:5432'
+
+  locations:
+    container_name: locations
+    build:
+      context: ./locations
+      dockerfile: Dockerfile
+    networks:
+      - cinema-network
+    ports:
+      - '8081:8080'
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://locations-db:5432/locations
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - locations-db
+
+  movies-db:
+    image: postgres
+    container_name: movies-db
+    restart: always
+    networks:
+      - cinema-network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=movies
+    ports:
+      - '5433:5432'
+
+  movies:
+    container_name: movies
+    build:
+      context: ./movies
+      dockerfile: Dockerfile
+    networks:
+      - cinema-network
+    ports:
+      - '8082:8080'
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://movies-db:5432/movies
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - movies-db
+  
+  tickets-db:
+    image: postgres
+    container_name: tickets-db
+    restart: always
+    networks:
+      - cinema-network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=tickets
+    ports:
+      - '5434:5432'
+
+  tickets:
+    container_name: tickets
+    build:
+      context: ./tickets
+      dockerfile: Dockerfile
+    networks:
+      - cinema-network
+    ports:
+      - '8083:8080'
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://tickets-db:5432/tickets
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - tickets-db
+
+  user-frontend:
+    container_name: user-frontend
+    build:
+      context: ./user-frontend
+      dockerfile: Dockerfile 
+    networks:
+      - cinema-network
+    ports:
+      - '4201:4200'
+    depends_on:
+      - tickets
+
+networks:
+  cinema-network:
+    driver: bridge

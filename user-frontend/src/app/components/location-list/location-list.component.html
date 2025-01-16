@@ -1,0 +1,18 @@
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let location of locations">
+        <td>{{ location.locationName }}</td>
+        <td>{{ location.locationAddress }}</td>
+        <td>
+          <button (click)="seeMovies(location.id)">See movies</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

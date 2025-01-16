@@ -1,0 +1,19 @@
+<table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>From Date</th>
+        <th>To Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies">
+        <td>{{ movie.title }}</td>
+        <td>{{ formatDate(movie.fromDate) }}</td>  <!-- Folosește formatDate pentru a afișa doar data -->
+        <td>{{ formatDate(movie.toDate) }}</td>    <!-- Folosește formatDate pentru a afișa doar data -->
+        <td><button (click)="buyTicket(movie.id)">Buy Ticket</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
