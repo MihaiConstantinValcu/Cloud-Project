@@ -57,6 +57,12 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public LocationDto getLocationById(String id) {
-        return locationsFeignService.getLocationById(id);
+        LocationDto location = locationsFeignService.getLocationById(id);
+        List<MovieDto> movies = location.getMovies().stream()
+                .filter(movie -> movie.getToDate().isAfter(LocalDate.now()))
+                .toList();
+        location.setMovies(movies);
+
+        return location;
     }
 }

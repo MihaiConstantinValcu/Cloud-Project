@@ -50,4 +50,9 @@ public class LocationServiceImpl implements LocationService {
         locationRepository.save(location);
         return modelMapper.map(location, LocationDto.class);
     }
+
+    @Override
+    public void deleteLocation(String id) {
+        locationRepository.deleteById(id);
+    }
 }

@@ -43,4 +43,9 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.save(movie);
         return modelMapper.map(movie, MovieDto.class);
     }
+
+    @Override
+    public void deleteMovie(String id) {
+        movieRepository.deleteById(id);
+    }
 }

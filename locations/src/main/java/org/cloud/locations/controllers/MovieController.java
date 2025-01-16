@@ -30,9 +30,14 @@ public class MovieController {
         return ResponseEntity.ok(movieService.getSourceMovies());
     }
 
-
     @PostMapping
     public ResponseEntity<MovieDto> createMovie(@RequestBody MovieDto movieDto) {
         return ResponseEntity.ok(movieService.createMovie(movieDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteMovie(@PathVariable String id) {
+        movieService.deleteMovie(id);
+        return ResponseEntity.ok().build();
     }
 }

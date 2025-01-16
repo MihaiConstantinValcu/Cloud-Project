@@ -1,0 +1,14 @@
+<form [formGroup]="locationForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="locationName">Name:</label>
+      <input id="locationName" type="text" formControlName="locationName" required />
+    </div>
+
+    <div>
+        <label for="locationAddress">Address:</label>
+        <input id="locationAddress" type="text" formControlName="locationAddress" required />
+      </div>
+  
+    <button type="submit" [disabled]="locationForm.invalid">Submit</button>
+  </form>
+  

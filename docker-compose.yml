@@ -101,6 +101,18 @@ services:
     depends_on:
       - tickets
 
+  management-frontend:
+    container_name: management-frontend
+    build:
+      context: ./management-frontend
+      dockerfile: Dockerfile 
+    networks:
+      - cinema-network
+    ports:
+      - '4202:4200'
+    depends_on:
+      - tickets
+
 networks:
   cinema-network:
     driver: bridge

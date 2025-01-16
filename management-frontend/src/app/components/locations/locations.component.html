@@ -1,0 +1,20 @@
+<div class="container">
+    <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let location of locations">
+            <td>{{ location.locationName }}</td>
+            <td>{{ location.locationAddress }}</td>
+            <td>
+              <button (click)="goToDetails(location.id)">See details</button>
+              <button (click)="deleteLocation(location.id)">Delete location</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

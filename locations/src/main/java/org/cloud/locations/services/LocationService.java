@@ -10,4 +10,6 @@ public interface LocationService {
     LocationDto getById(String id);
 
     LocationDto createLocation(LocationDto locationDto);
+
+    void deleteLocation(String id);
 }

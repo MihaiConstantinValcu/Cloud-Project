@@ -14,4 +14,6 @@ public interface MovieService {
     MovieDto createMovie(MovieDto movieDto);
 
     List<SourceMovieDto> getSourceMovies();
+
+    void deleteMovie(String id);
 }

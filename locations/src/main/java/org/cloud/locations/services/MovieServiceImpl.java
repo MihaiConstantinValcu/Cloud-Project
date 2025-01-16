@@ -45,4 +45,9 @@ public class MovieServiceImpl implements MovieService {
     public List<SourceMovieDto> getSourceMovies() {
         return moviesFeignService.getAllMovies();
     }
+
+    @Override
+    public void deleteMovie(String id) {
+        movieRepository.deleteById(id);
+    }
 }

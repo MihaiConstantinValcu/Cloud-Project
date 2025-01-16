@@ -1,0 +1,59 @@
+<div class = "data-container">
+<h2>Cinema Name: {{location?.locationName}}</h2>
+<h2>Cinema Address: {{location?.locationAddress}}</h2>
+</div>
+
+<div class="container">
+    <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Seats</th>
+            <th>From Date</th>
+            <th>To Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movie of movies">
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.seats }}</td>
+            <td>{{ movie.fromDate }}</td>
+            <td>{{ movie.toDate }}</td>
+            <td>
+              <button (click)="deleteMovie(movie.id)">Delete movie</button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+  
+    <div>
+      <label for="sourceMovie">Title:</label>
+      <select id="sourceMovie" formControlName="sourceMovie" required>
+        <option value="">Select Movie</option>
+        <option *ngFor="let sourceMovie of sourceMovies" [ngValue]="sourceMovie">{{ sourceMovie.name }}</option>
+      </select>
+    </div>
+
+    <div>
+        <label for="seats">Seats:</label>
+        <input id="seats" type="number" min="0" formControlName="seats" required />
+    </div>
+  
+    <div>
+      <label for="fromDate">From Date:</label>
+      <input id="fromDate" type="date" formControlName="fromDate" required />
+    </div>
+
+    <div>
+        <label for="toDate">From Date:</label>
+        <input id="toDate" type="date" formControlName="toDate" required />
+    </div>
+  
+    <button type="submit" [disabled]="movieForm.invalid">Submit</button>
+  </form>
+  
+

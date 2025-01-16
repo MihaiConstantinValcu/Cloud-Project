@@ -28,4 +28,10 @@ public class LocationController {
     public ResponseEntity<LocationDto> createLocation(@RequestBody LocationDto locationDto) {
         return ResponseEntity.ok(locationService.createLocation(locationDto));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteLocation(@PathVariable String id) {
+        locationService.deleteLocation(id);
+        return ResponseEntity.ok().build();
+    }
 }

@@ -1,0 +1,27 @@
+<form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="name" required />
+    </div>
+  
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description" required></textarea>
+    </div>
+  
+    <div>
+      <label for="rating">Rating:</label>
+      <select id="rating" formControlName="rating" required>
+        <option value="">Select Rating</option>
+        <option *ngFor="let option of ratings" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+  
+    <div>
+      <label for="publishDate">Publish Date:</label>
+      <input id="publishDate" type="date" formControlName="publishDate" required />
+    </div>
+  
+    <button type="submit" [disabled]="movieForm.invalid">Submit</button>
+  </form>
+  
